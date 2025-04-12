@@ -8,14 +8,6 @@ import os
 class DataLoader:
 
     def __init__(self, uri, user, password):
-        """
-        Connect to the Neo4j database and other init steps
-        
-        Args:
-            uri (str): URI of the Neo4j database
-            user (str): Username of the Neo4j database
-            password (str): Password of the Neo4j database
-        """
         self.driver = GraphDatabase.driver(uri, auth=(user, password), encrypted=False)
         self.driver.verify_connectivity()
 
@@ -29,13 +21,6 @@ class DataLoader:
 
     # Define a function to create nodes and relationships in the graph
     def load_transform_file(self, file_path):
-        """
-        Load the parquet file and transform it into a csv file
-        Then load the csv file into neo4j
-
-        Args:
-            file_path (str): Path to the parquet file to be loaded
-        """
 
         # Read the parquet file
         trips = pq.read_table(file_path)
